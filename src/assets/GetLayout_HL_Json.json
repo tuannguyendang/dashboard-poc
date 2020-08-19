@@ -1,0 +1,70 @@
+{
+    "layoutMasterData" :[
+      {
+        "fieldMasterData" : [
+          {
+            "srclayoutid": 4,
+            "screenversionno": null,
+            "reqid": 1,
+            "isreadonly": "N",
+            "isfieldvisible": "Y",
+            "fieldvalidators": null,
+            "fieldstylecss": "small v-dynamicfield-padding",
+            "fieldseq": 10,
+            "fieldname": "CASE_NUM",
+            "fieldlistname": "",
+            "fieldid": 124000,
+            "fielddispname": "Case Number",
+            "fielddiscription": "CaseNum",
+            "fielddefaultvalue": "",
+            "fielddatatype": "NUMBER",
+            "fieldcomponenttype": "TextField",
+            "expendratio": 1,
+            "dbtablename": "SSWDB.SSW_CASE_DATA",
+            "dbcolumnname": "CASE_NUM",
+            "dbcolumnlength": 100,
+            "dbcolumndatatype": "VARCHAR",
+            "customcomponent": "WIDTH/90%",
+            "crmfieldresxpath": "NA",
+            "crmfieldreqxpath": "NA",
+            "alignment": "MIDDLE_LEFT",
+            "ismandatory": "N",
+            "validationerror": null,
+            "gridlayouts": null,
+            "caseStattus": null 
+          },
+          {
+            "srclayoutid": 4,
+            "screenversionno": null,
+            "reqid": 1,
+            "isreadonly": "N",
+            "isfieldvisible": "Y",
+            "fieldvalidators": null,
+            "fieldstylecss": "small v-dynamicfield-padding",
+            "fieldseq": 20,
+            "fieldname": "CHANNEL_CODE",
+            "fieldlistname": "CHANNEL_CODE",
+            "fieldid": 124001,
+            "fielddispname": "Channel",
+            "fielddiscription": "channel",
+            "fielddefaultvalue": "",
+            "fielddatatype": "VARCHAR",
+            "fieldcomponenttype": "CodeListDropDown",
+            "expendratio": 1,
+            "dbtablename": "SSWDB.SSW_CASE_DATA",
+            "dbcolumnname": "CHANNEL_CODE",
+            "dbcolumnlength": 50,
+            "dbcolumndatatype": "VARCHAR",
+            "customcomponent": "WIDTH/90%",
+            "crmfieldresxpath": "NA",
+            "crmfieldreqxpath": "NA",
+            "alignment": "MIDDLE_LEFT",
+            "ismandatory": "N",
+            "validationerror": null,
+            "gridlayouts": null,
+            "caseStattus": null 
+          }
+        ]
+      }
+    ]
+  }

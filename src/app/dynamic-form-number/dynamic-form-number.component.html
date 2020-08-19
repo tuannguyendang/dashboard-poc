@@ -1,0 +1,7 @@
+<form [formGroup]="myFormGroup" (ngSubmit)="onSubmit()">
+    Number of books:
+    <input type="number" min="0" formControlName="number_of_books" />
+    <div *ngFor="let num in number_of_books">
+    <input type="text" formControlName="{{num}}" />
+    </div>
+</form>
