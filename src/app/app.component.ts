@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { QuestionService } from './service/question.service';
+import { ElementService } from './service/element.service';
 import { Observable } from 'rxjs';
-import { QuestionBase } from './service/question-base';
+import { ElementBase } from './element/element-base';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers:  [QuestionService],
+  providers:  [ElementService],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'dashboard-poc';
-  questions$: Observable<QuestionBase<any>[]>;
+  questions$: Observable<Map<any, ElementBase<any>[]>>;
 
-  constructor(service: QuestionService) {
+  constructor(service: ElementService) {
     this.questions$ = service.getQuestions();
   }
 }

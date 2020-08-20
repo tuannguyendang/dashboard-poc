@@ -1,9 +1,15 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-
-    <div *ngFor="let question of questions" class="form-row">
-      <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
-    </div>
+    <mat-tab-group>
+      <div *ngFor="let question of questions | keyvalue" class="form-row">
+        <mat-tab label="{{question.key}}">
+          <p>Layout for {{question.key}}</p>
+          <div *ngFor="let q of question.value | keyvalue" class="form-row">
+            <app-dynamic-form-element [question]="q.value" [form]="form"></app-dynamic-form-element>
+          </div>
+        </mat-tab>
+      </div>
+    </mat-tab-group>
 
     <div class="form-row">
       <button type="submit" [disabled]="!form.valid">Save</button>
