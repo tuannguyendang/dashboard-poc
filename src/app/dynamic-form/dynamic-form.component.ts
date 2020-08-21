@@ -3,23 +3,39 @@ import { FormGroup } from '@angular/forms';
 
 import { ElementBase } from '../element/element-base';
 import { ElementControlService } from '../service/element-control.service'
+import { ElementLayout } from '../element/element-layout';
 
 @Component({
   selector: 'app-dynamic-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.css'],
-  providers: [ ElementControlService ]
+  providers: [ElementControlService]
 })
 export class DynamicFormComponent implements OnInit {
 
-  @Input() questions: Map<any, ElementBase<any>[]>;
+  @Input() layouts: [ElementLayout, Map<string, ElementBase<any>[]>][];
+  elements: Map<any, ElementBase<any>[]> = new Map();
   form: FormGroup;
   payLoad = '';
 
-  constructor(private qcs: ElementControlService) {  }
+  constructor(private ecs: ElementControlService) { }
 
   ngOnInit() {
-    this.form = this.qcs.toFormGroup(this.questions);
+    // let form: Map<any, ElementBase<any>[]>;
+    //get all layout
+    //create layout
+    //create form in each layout
+    this.layouts.forEach(el => {
+      let layout: ElementLayout = el[0];
+      let elementInLayouts: Map<string, ElementBase<any>[]> = el[1];
+      this.generateLayout(layout);
+      this.generateFormForLayout(elementInLayouts);
+
+      for (let key of el[1].keys()) {
+        this.elements.set(key, el[1].get(key));
+      }
+    })
+    this.form = this.ecs.toFormGroup(this.elements);
   }
 
   onSubmit() {
@@ -27,4 +43,12 @@ export class DynamicFormComponent implements OnInit {
     alert("Data submited : " + this.payLoad);
   }
 
+  generateLayout(elementLayout: ElementLayout) {
+    console.log('generate layout form ' + elementLayout);
+  }
+
+  generateFormForLayout(elementInLayouts: Map<string, ElementBase<any>[]>) {
+    console.log('generate form ' + elementInLayouts);
+    // this.form = this.ecs.toFormGroup(form);
+  }
 }

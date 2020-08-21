@@ -51,6 +51,7 @@ import { DynamicFormElementComponent } from './dynamic-form-element/dynamic-form
 import { DynamicFormJsonComponent } from './dynamic-form-json/dynamic-form-json.component';
 import { DynamicFormNumberComponent } from './dynamic-form-number/dynamic-form-number.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { DynamicTabComponent } from './dynamic-tab/dynamic-tab.component';
 
 
 
@@ -61,7 +62,8 @@ import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
     DynamicFormComponent,
     DynamicFormJsonComponent,
     DynamicFormNumberComponent,
-    DynamicDashboardComponent
+    DynamicDashboardComponent,
+    DynamicTabComponent
   ],
   imports: [
     BrowserModule,

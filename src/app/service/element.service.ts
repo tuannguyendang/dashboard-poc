@@ -6,20 +6,40 @@ import { TextboxElement } from '../element/element-textbox';
 import { DatePickerElement } from '../element/element-date-picker';
 import { of, Observable } from 'rxjs';
 import *  as  form_template from '../../assets/GetLayout_HL_Json.json';
+import { ElementLayout } from '../element/element-layout';
 
 @Injectable()
 export class ElementService {
 
-  getQuestions(): Observable<Map<string, ElementBase<any>[]>> {
-    let groupQuestions = new Map<string, ElementBase<any>[]>();
-
+    getLayouts(): Observable<[ElementLayout, Map<string, ElementBase<any>[]>][]> {
+    let layouts : [ElementLayout, Map<string, ElementBase<any>[]>][] = [];
+    
     let layout = (form_template as any).default.layoutMasterData;
     layout.forEach(element => {
       let fieldMasters = element.fieldMasterData;
+      let elementLayout = new ElementLayout({
+        stylename: element.stylename,
+        screeenheader: element.screeenheader,
+        screenid: element.screenid,
+        reqmastid: element.reqmastid,
+        parentscreenlayoutid: element.parentscreenlayoutid,
+        noofcolumns: element.noofcolumns,
+        layouttype: element.layouttype,
+        layoutsubsec: element.layoutsubsec,
+        layoutseq: element.layoutseq,
+        iscollapsable: element.iscollapsable,
+        isallreadonly: element.isallreadonly,
+        isactive: element.isactive,
+        expendratio: element.expendratio,
+        alignment: element.alignment
+      });
+
+      let groupLayouts = new Map<string, ElementBase<any>[]>();
+
       fieldMasters.forEach(input_template => {
         let questions: ElementBase<string>[] = [];
-        if (groupQuestions.has(input_template.srclayoutid)) {
-          questions = groupQuestions.get(input_template.srclayoutid);
+        if (groupLayouts.has(input_template.srclayoutid)) {
+          questions = groupLayouts.get(input_template.srclayoutid);
         }
         if (input_template.fieldcomponenttype == 'TextField') {
           questions.push(new TextboxElement({
@@ -34,7 +54,7 @@ export class ElementService {
           questions.push(new DropdownElement({
             key: input_template.fieldname,
             label: input_template.fielddispname,
-            options: [{ key: 'SMS', value: 'SMS' }, { key: 'Phone_Call', value: 'Phone Call' }, { key: 'Email', value: 'Email' }, { key: 'Refer', value: 'Refer' }],
+            options: [{ key: 'sample', value: 'sample' }],
             order: 3
           }));
         }
@@ -49,9 +69,10 @@ export class ElementService {
 
         }
         questions.sort((a, b) => a.order - b.order);
-        groupQuestions.set(input_template.srclayoutid, questions);
+        groupLayouts.set(input_template.srclayoutid, questions);
       })
+      layouts.push([elementLayout, groupLayouts]);
     });
-    return of(groupQuestions);
+    return of(layouts);
   }
 }

@@ -7,20 +7,15 @@ import { ElementBase } from '../element/element-base';
 export class ElementControlService {
   constructor() { }
 
-  toFormGroup(questions: Map<any, ElementBase<any>[]> ) {
+  toFormGroup(elements: Map<any, ElementBase<any>[]>) {
     const group: any = {};
-    
-    questions.forEach(function(value, key) {
-      console.log(key + ' = ' + value);
-      value.forEach(question => {
-      group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-                                              : new FormControl(question.value || '');
-    });
+
+    elements.forEach(function (value, key) {
+      value.forEach(element => {
+        group[element.key] = element.required ? new FormControl(element.value || '', Validators.required)
+          : new FormControl(element.value || '');
+      });
     })
-    // questions.forEach(question => {
-    //   group[question.key] = question.required ? new FormControl(question.value || '', Validators.required)
-    //                                           : new FormControl(question.value || '');
-    // });
     return new FormGroup(group);
   }
 }

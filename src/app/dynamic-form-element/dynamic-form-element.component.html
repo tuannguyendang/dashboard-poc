@@ -1,15 +1,37 @@
 <div [formGroup]="form">
-  <label [attr.for]="question.key">{{question.label}}</label>
+  <!-- <label [attr.for]="question.key">{{question.label}}</label> -->
 
   <div [ngSwitch]="question.controlType">
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <!-- <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type"> -->
 
-    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+    <mat-form-field *ngSwitchCase="'textbox'" appearance="legacy">
+      <mat-label>Legacy form field</mat-label>
+      <input matInput placeholder="Placeholder" [formControlName]="question.key" [id]="question.key"
+        [type]="question.type">
+      <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+    <!-- <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
       <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-    </select>
+    </select> -->
+    <mat-form-field *ngSwitchCase="'dropdown'" appearance="fill">
+      <mat-label>Select me</mat-label>
+      <mat-select [id]="question.key" [formControlName]="question.key">
+        <mat-option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</mat-option>
+      </mat-select>
+      <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+    </mat-form-field>
 
-    <input *ngSwitchCase="'picker'" [formControlName]="question.key" [id]="question.key" [type]="question.type">
+    <!-- <input *ngSwitchCase="'picker'" [formControlName]="question.key" [id]="question.key" [type]="question.type"> -->
+    <mat-form-field *ngSwitchCase="'picker'" class="example-full-width" appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input [formControlName]="question.key" [id]="question.key" [type]="question.type" matInput
+        [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+    </mat-form-field>
   </div>
 
   <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>

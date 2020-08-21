@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ElementService } from './service/element.service';
 import { Observable } from 'rxjs';
 import { ElementBase } from './element/element-base';
+import { ElementLayout } from './element/element-layout';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ import { ElementBase } from './element/element-base';
 })
 export class AppComponent {
   title = 'dashboard-poc';
-  questions$: Observable<Map<any, ElementBase<any>[]>>;
+  layouts$: Observable<[ElementLayout, Map<string, ElementBase<any>[]>][]>;
 
   constructor(service: ElementService) {
-    this.questions$ = service.getQuestions();
+    this.layouts$ = service.getLayouts();
   }
 }
