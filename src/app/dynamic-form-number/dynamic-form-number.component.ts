@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,7 +28,7 @@ export class DynamicFormNumberComponent implements OnInit {
       this.myFormGroup.removeControl(val_plus_one.toString())
     } catch { }
     //Add formControls for 1 - number of books that user enters.
-    const numbers = Array().fill(1,val_plus_one).map((_, idx) => idx + 1)
+    const numbers = Array().fill(1, val_plus_one).map((_, idx) => idx + 1)
     numbers.forEach((num) => {
       const fc = new FormControl('');
       this.myFormGroup.addControl(num.toString(), fc)

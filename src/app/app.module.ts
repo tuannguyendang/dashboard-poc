@@ -52,7 +52,9 @@ import { DynamicFormJsonComponent } from './dynamic-form-json/dynamic-form-json.
 import { DynamicFormNumberComponent } from './dynamic-form-number/dynamic-form-number.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { DynamicTabComponent } from './dynamic-tab/dynamic-tab.component';
-
+import { TabContentComponent } from './dynamic-tab/tab-content.component';
+import { TabDynamicComponent } from './dynamic-tab/tab-dynamic-component';
+import { TabDirective } from './dynamic-tab/tab.directive';
 
 
 @NgModule({
@@ -63,7 +65,10 @@ import { DynamicTabComponent } from './dynamic-tab/dynamic-tab.component';
     DynamicFormJsonComponent,
     DynamicFormNumberComponent,
     DynamicDashboardComponent,
-    DynamicTabComponent
+    DynamicTabComponent,
+    TabDirective,
+    TabContentComponent,
+    TabDynamicComponent
   ],
   imports: [
     BrowserModule,

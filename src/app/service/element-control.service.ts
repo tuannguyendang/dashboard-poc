@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { ElementBase } from '../element/element-base';
 
-@Injectable()
+
+@Injectable(
+  {
+    providedIn: 'root',
+  }
+)
 export class ElementControlService {
   constructor() { }
 

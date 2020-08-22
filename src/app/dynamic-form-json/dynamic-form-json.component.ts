@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl,Validators } from '@angular/forms';
-import *  as  form_template from '../../assets/layout_hl.json';
+import { FormControl, FormGroup } from '@angular/forms';
+import * as form_template from '../../assets/layout_hl.json';
 
 @Component({
   selector: 'app-dynamic-form-json',
@@ -9,23 +9,23 @@ import *  as  form_template from '../../assets/layout_hl.json';
 })
 export class DynamicFormJsonComponent implements OnInit {
 
-  myFormGroup:FormGroup;
-  formTemplate: any; 
+  myFormGroup: FormGroup;
+  formTemplate: any;
 
   constructor() { }
 
   ngOnInit(): void {
     this.formTemplate = this.getFormTemplate();
     console.log(this.formTemplate);
-    let group={}    
-    this.formTemplate.forEach(input_template=>{
+    let group = {}
+    this.formTemplate.forEach(input_template => {
       console.log(input_template);
-      group[input_template.label]=new FormControl('');  
+      group[input_template.label] = new FormControl('');
     })
     this.myFormGroup = new FormGroup(group);
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.myFormGroup.value);
   }
 

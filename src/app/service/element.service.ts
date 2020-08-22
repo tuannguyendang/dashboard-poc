@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-
-import { DropdownElement } from '../element/element-dropdown';
+import { Observable, of } from 'rxjs';
+import * as form_template from '../../assets/GetLayout_HL_Json.json';
 import { ElementBase } from '../element/element-base';
-import { TextboxElement } from '../element/element-textbox';
 import { DatePickerElement } from '../element/element-date-picker';
-import { of, Observable } from 'rxjs';
-import *  as  form_template from '../../assets/GetLayout_HL_Json.json';
+import { DropdownElement } from '../element/element-dropdown';
 import { ElementLayout } from '../element/element-layout';
+import { TextboxElement } from '../element/element-textbox';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class ElementService {
 
-    getLayouts(): Observable<[ElementLayout, Map<string, ElementBase<any>[]>][]> {
-    let layouts : [ElementLayout, Map<string, ElementBase<any>[]>][] = [];
-    
+  getLayouts(): Observable<[ElementLayout, Map<string, ElementBase<any>[]>][]> {
+    let layouts: [ElementLayout, Map<string, ElementBase<any>[]>][] = [];
+
     let layout = (form_template as any).default.layoutMasterData;
     layout.forEach(element => {
       let fieldMasters = element.fieldMasterData;

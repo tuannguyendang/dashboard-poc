@@ -1,15 +1,10 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <mat-tab-group>
       <div *ngFor="let el of elements | keyvalue" class="form-row">
-        <mat-tab label="Tab {{el.key}}">
           <div *ngFor="let q of el.value | keyvalue" class="form-row">
             <app-dynamic-form-element [question]="q.value" [form]="form"></app-dynamic-form-element>
           </div>
-        </mat-tab>
       </div>
-    </mat-tab-group>
-
     <div class="form-row">
       <button mat-raised-button type="submit" [disabled]="!form.valid">Save</button>
     </div>
