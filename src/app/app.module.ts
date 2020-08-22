@@ -55,7 +55,10 @@ import { DynamicTabComponent } from './dynamic-tab/dynamic-tab.component';
 import { TabContentComponent } from './dynamic-tab/tab-content.component';
 import { TabDynamicComponent } from './dynamic-tab/tab-dynamic-component';
 import { TabDirective } from './dynamic-tab/tab.directive';
-
+import { DynamicExpansionCollapseComponent } from './dynamic-expansion/dynamic-expansion-collapse.component';
+import { ExpansionDynamicComponent } from './dynamic-expansion/expansion-dynamic-component';
+import { ExpansionContentComponent } from './dynamic-expansion/expansion-content.component';
+import { ExpansionDirective } from './dynamic-expansion/expansion.directive';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,11 @@ import { TabDirective } from './dynamic-tab/tab.directive';
     DynamicTabComponent,
     TabDirective,
     TabContentComponent,
-    TabDynamicComponent
+    TabDynamicComponent,
+    DynamicExpansionCollapseComponent,
+    ExpansionDynamicComponent,
+    ExpansionContentComponent,
+    ExpansionDirective
   ],
   imports: [
     BrowserModule,

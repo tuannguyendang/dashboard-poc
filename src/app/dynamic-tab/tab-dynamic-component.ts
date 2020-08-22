@@ -1,14 +1,14 @@
 import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AdComponent } from './ad.component';
 import { TabData } from './tab-data';
 import { TabItem } from './tab-item';
+import { TabComponent } from './tab.component';
 import { TabDirective } from './tab.directive';
 
 
 @Component({
     selector: 'app-dy-tab',
     template: `
-              <div class="ad-banner-example">
+              <div class="tab-banner-example">
                 <h3>Tabs Dynamic</h3>
                 <ng-template tabDirective></ng-template>
               </div>
@@ -43,7 +43,7 @@ export class TabDynamicComponent implements OnInit, OnDestroy {
         const viewContainerRef = this.tabDirective.viewContainerRef;
         viewContainerRef.clear();
 
-        const componentRef = viewContainerRef.createComponent<AdComponent>(componentFactory);
+        const componentRef = viewContainerRef.createComponent<TabComponent>(componentFactory);
         componentRef.instance.data = datas;
     }
 

@@ -1,8 +1,8 @@
 import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[adHost]',
+  selector: '[expansionDirective]',
 })
-export class AdDirective {
+export class ExpansionDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
 }

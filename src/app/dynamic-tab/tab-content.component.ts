@@ -1,15 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import { ElementBase } from '../element/element-base';
-import { ElementLayout } from '../element/element-layout';
 import { TabData } from './tab-data';
 import { TabComponent } from './tab.component';
 
-
-export interface ExampleTab {
-  label: string;
-  content: string;
-}
 
 @Component({
   template: `
@@ -19,7 +12,7 @@ export interface ExampleTab {
   
   <mat-tab-group>
     <mat-tab *ngFor="let tab of asyncTabs | async">
-      <ng-template mat-tab-label>{{tab.label}}</ng-template>
+      <ng-template mat-tab-label>{{tab.label.layouttype}}</ng-template>
       <app-dynamic-form [elements]="tab.content"></app-dynamic-form>
     </mat-tab>
   </mat-tab-group>
@@ -28,23 +21,17 @@ export interface ExampleTab {
 export class TabContentComponent implements OnInit, TabComponent {
   @Input() data: TabData[];
 
-  asyncTabs: Observable<ExampleTab[]>;
+  asyncTabs: Observable<TabData[]>;
 
   constructor() {
 
   }
 
   ngOnInit() {
-    let tabDatas = [];
-    this.data.forEach(el => {
-      let layout: ElementLayout = el.label;
-      let elementInLayouts: Map<string, ElementBase<any>[]> = el.content;
-      tabDatas.push({ label: layout.layouttype, content: elementInLayouts })
-    });
-    this.asyncTabs = new Observable((observer: Observer<ExampleTab[]>) => {
+    this.asyncTabs = new Observable((observer: Observer<TabData[]>) => {
       setTimeout(() => {
         observer.next(
-          tabDatas
+          this.data
         );
       }, 1000);
     });
